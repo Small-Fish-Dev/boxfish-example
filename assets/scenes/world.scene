@@ -17,26 +17,26 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "VoxelScale": 39.37008
+          "VoxelScale": 25
         },
         {
           "__type": "BoxfishExample.WorldGenerator",
           "__guid": "9c7eb53c-2ee9-43c6-aae0-d88ac5eb831d",
-          "MaxTrees": 16,
+          "MaxTrees": 62,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "OverrideSeed": null,
+          "OverrideSeed": 2,
           "Volume": {
             "_type": "component",
             "component_id": "66a2053c-2fb1-435c-afd7-b60d601736d8",
             "go": "7ff5fd9b-dcf8-488d-a7da-5f5c853ebc02",
             "component_type": "VoxelVolume"
           },
-          "WorldRadius": 4
+          "WorldRadius": 15
         }
       ],
       "Children": [
@@ -118,12 +118,30 @@
         {
           "__type": "BoxfishExample.Player",
           "__guid": "cda04c1c-05a4-4228-90fc-61aac04b49f5",
+          "AnimationHelper": {
+            "_type": "component",
+            "component_id": "83ad3737-ac3f-4c80-b973-3a469eb7f830",
+            "go": "566833d8-545c-4671-a1ab-503a2d3a34d4",
+            "component_type": "CitizenAnimationHelper"
+          },
           "Camera": {
             "_type": "component",
             "component_id": "a241ecef-5c2f-4ed0-8456-925357f6d18c",
             "go": "66956c94-5b4d-4fc3-b9a7-aa8267adb755",
             "component_type": "CameraComponent"
           },
+          "Collider": {
+            "_type": "component",
+            "component_id": "daf6d4b0-5d92-4921-87d7-c3229ca03328",
+            "go": "1350d4dc-551f-421b-b503-af32cbcef9a6",
+            "component_type": "BoxCollider"
+          },
+          "Gravity": "0,0,-600",
+          "InteractionDistance": 128,
+          "JumpForce": 250,
+          "MaxCameraDistance": 500,
+          "MaxItemStack": 32,
+          "MinCameraDistance": 100,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -131,6 +149,38 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "Renderer": {
+            "_type": "component",
+            "component_id": "6e0224a4-e425-47a7-b587-e2211bebd79c",
+            "go": "1350d4dc-551f-421b-b503-af32cbcef9a6",
+            "component_type": "SkinnedModelRenderer"
+          },
+          "StepHeight": 16,
+          "WalkSpeed": 200
+        },
+        {
+          "__type": "Sandbox.Citizen.CitizenAnimationHelper",
+          "__guid": "83ad3737-ac3f-4c80-b973-3a469eb7f830",
+          "BodyWeight": 1,
+          "EyeSource": {
+            "_type": "gameobject",
+            "go": "66956c94-5b4d-4fc3-b9a7-aa8267adb755"
+          },
+          "EyesWeight": 1,
+          "HeadWeight": 1,
+          "Height": null,
+          "IkLeftFoot": null,
+          "IkLeftHand": null,
+          "IkRightFoot": null,
+          "IkRightHand": null,
+          "LookAt": null,
+          "LookAtEnabled": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Target": {
             "_type": "component",
             "component_id": "6e0224a4-e425-47a7-b587-e2211bebd79c",
             "go": "1350d4dc-551f-421b-b503-af32cbcef9a6",
@@ -182,6 +232,27 @@
               },
               "Tint": "1,1,1,1",
               "UseAnimGraph": true
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "daf6d4b0-5d92-4921-87d7-c3229ca03328",
+              "Center": "0,0,36",
+              "Friction": null,
+              "IsTrigger": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "Scale": "24,24,72",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
             }
           ]
         },
@@ -197,7 +268,7 @@
               "__guid": "a241ecef-5c2f-4ed0-8456-925357f6d18c",
               "BackgroundColor": "0.33333,0.46275,0.52157,1",
               "ClearFlags": "All",
-              "FieldOfView": 60,
+              "FieldOfView": 80,
               "IsMainCamera": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,

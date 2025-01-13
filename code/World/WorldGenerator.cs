@@ -58,7 +58,7 @@ public sealed class WorldGenerator : Component
 		// Place some trees.
 		void PlaceTree( int x, int y, int z )
 		{
-			const ushort LOGS = 0;
+			const ushort LOGS = 4;
 			const ushort LEAVES = 3;
 
 			// Leaves
@@ -68,21 +68,22 @@ public sealed class WorldGenerator : Component
 					for ( int k = 0; k < 5; k++ )
 					{
 						var pos = center + new Vector3Int( i, j, k );
-						if ( pos.Distance( center ) >= 2.5f )
+						if ( pos.Distance( center ) >= 2.25f ) // freaky float
 							continue;
 
 						Volume.SetVoxel( pos.x, pos.y, pos.z, new Voxel( Color32.White, LEAVES ) );
 					}
 
 			// Trunk
-			Volume.SetVoxel( x, y, z, new Voxel( Color.Black, LOGS ) );
-			Volume.SetVoxel( x, y, z + 1, new Voxel( Color.Black, LOGS ) );
-			Volume.SetVoxel( x, y, z + 2, new Voxel( Color.Black, LOGS ) );
-			Volume.SetVoxel( x, y, z + 3, new Voxel( Color.Black, LOGS ) );
+			Volume.SetVoxel( x, y, z, new Voxel( Color32.White, LOGS ) );
+			Volume.SetVoxel( x, y, z + 1, new Voxel( Color32.White, LOGS ) );
+			Volume.SetVoxel( x, y, z + 2, new Voxel( Color32.White, LOGS ) );
+			Volume.SetVoxel( x, y, z + 3, new Voxel( Color32.White, LOGS ) );
 		}
 
 		for ( int i = 0; i < MaxTrees; i++ )
 		{
+			Game.SetRandomSeed( seed + 69 + i ); // hehe,,,
 			var random = Game.Random.FromList( heightMap );
 			PlaceTree( random.x, random.y, random.z );
 		}
