@@ -12,9 +12,9 @@ public sealed class ImporterExample : VoxelVolume, Component.ExecuteInEditor
 		await GenerateMeshes( Chunks.Values );
 	}
 
-	protected override void DrawGizmos()
+	protected override void OnUpdate()
 	{
-		base.DrawGizmos();
+		base.OnUpdate();
 
 		// Render chunk models in editor!
 		if ( Game.IsPlaying || !Scene.IsEditor || Chunks == null || !Chunks.Any() )

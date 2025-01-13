@@ -44,6 +44,7 @@
             {
               "__type": "Sandbox.CubemapFog",
               "__guid": "43a73fa2-cc0a-453b-b48d-8b49d3da88b7",
+              "__enabled": false,
               "Blur": 0.5,
               "EndDistance": 4096,
               "FalloffExponent": 1,

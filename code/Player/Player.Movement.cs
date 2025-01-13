@@ -36,9 +36,12 @@ partial class Player
 		{
 			var up = Input.Down( "Jump" ) ? 1 : 0;
 			WishVelocity = Input.AnalogMove.WithZ( up );
-			WishVelocity *= EyeAngles.ToRotation();
-			WishVelocity = WishVelocity.Normal;
-			WishVelocity *= NoclipSpeed;
+			if ( !WishVelocity.IsNearlyZero() )
+			{
+				WishVelocity *= EyeAngles.ToRotation();
+				WishVelocity = WishVelocity.Normal;
+				WishVelocity *= NoclipSpeed;
+			}
 
 			WorldPosition += WishVelocity * Time.Delta;
 
@@ -50,9 +53,12 @@ partial class Player
 
 		// Figure out WishVelocity...
 		WishVelocity = Input.AnalogMove;
-		WishVelocity *= Renderer.WorldRotation;
-		WishVelocity = WishVelocity.Normal;
-		WishVelocity *= WalkSpeed;
+		if ( !WishVelocity.IsNearlyZero() )
+		{
+			WishVelocity *= Renderer.WorldRotation;
+			WishVelocity = WishVelocity.Normal;
+			WishVelocity *= WalkSpeed;
+		}
 
 		// Apply gravity!
 		if ( !IsGrounded ) Velocity += Gravity * Time.Delta;
