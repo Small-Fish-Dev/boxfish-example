@@ -6,3 +6,7 @@
 
 This project is an example showcasing the usage of the Boxfish library.
 You can also find it on [sbox.game](https://sbox.game/fish/boxfish-example).
+
+#### Boxfish
+
+You can find the MIT licensed source code for Boxfish [here](https://github.com/Small-Fish-Dev/boxfish/tree/main) or on [sbox.game](https://sbox.game/fish/boxfish).
