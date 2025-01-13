@@ -6,6 +6,9 @@ partial class Player
 	public float WalkSpeed { get; set; }
 
 	[Property, Range( 100, 800, 0.5f ), Feature( "Movement" )]
+	public float NoclipSpeed { get; set; }
+
+	[Property, Range( 100, 800, 0.5f ), Feature( "Movement" )]
 	public float JumpForce { get; set; }
 
 	[Property, Range( 0f, 32f, 0.5f ), Feature( "Movement" )]
@@ -14,6 +17,7 @@ partial class Player
 	[Property, Range( 0f, 32f, 0.5f ), Feature( "Movement" )]
 	public Vector3 Gravity { get; set; }
 
+	public bool Noclip { get; private set; }
 	public Vector3 WishVelocity { get; private set; }
 	public Vector3 Velocity { get; set; }
 	public GameObject GroundObject { get; private set; }
@@ -24,6 +28,26 @@ partial class Player
 
 	private void UpdateMovement()
 	{
+		// Noclip!
+		if ( Input.Pressed( "Noclip" ) )
+			Noclip = !Noclip;
+
+		if ( Noclip )
+		{
+			var up = Input.Down( "Jump" ) ? 1 : 0;
+			WishVelocity = Input.AnalogMove.WithZ( up );
+			WishVelocity *= EyeAngles.ToRotation();
+			WishVelocity = WishVelocity.Normal;
+			WishVelocity *= NoclipSpeed;
+
+			WorldPosition += WishVelocity * Time.Delta;
+
+			Velocity = Vector3.Zero;
+			GroundObject = null;
+
+			return;
+		}
+
 		// Figure out WishVelocity...
 		WishVelocity = Input.AnalogMove;
 		WishVelocity *= Renderer.WorldRotation;

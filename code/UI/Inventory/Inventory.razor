@@ -1,0 +1,53 @@
+﻿﻿@namespace BoxfishExample
+@inherits Panel
+
+@if ( !Player.Local.IsValid() )
+	return;
+
+<root>
+	<div class="slots">
+		@for ( int i = 0; i < MAX_ITEMS; i++ )
+		{
+			var kvp = Player.Local.Items.ElementAtOrDefault( i );
+			var index = kvp.Key;
+			var amount = kvp.Value;
+
+			<div class="slot @(i == Player.Local?.Selected ? "selected" : "")">
+				@if ( amount > 0 ) 
+				{
+					if ( !Volume.Atlas.TryGet( index, out var atlasItem ) )
+						return;
+
+					<TextureIcon Icon="@VoxelIcon.Fetch( Volume.Atlas, atlasItem )" /> 
+					<p class="amount">@amount</p>
+				}
+			</div>
+		}
+	</div>
+</root>
+
+@code {
+	const int MAX_ITEMS = 8; // not really capped at 8 but let's make 8 slots :D
+
+	private VoxelVolume Volume => WorldGenerator.Instance?.Volume;
+
+	public override void Tick()
+	{
+		if ( !Player.Local.IsValid() )
+			return;
+
+		for ( int i = 1; i < MAX_ITEMS + 1; i++ )
+			if ( Input.Pressed( $"Inventory_{i}" ) )
+			{
+				Player.Local.Selected = i - 1;
+				break;
+			}
+	}
+
+	protected override int BuildHash() 
+	=> HashCode.Combine(
+			Player.Local,
+			Player.Local?.Items?.Select( kvp => HashCode.Combine( kvp.Key, kvp.Value ) ),
+			Player.Local?.Selected
+		);
+}

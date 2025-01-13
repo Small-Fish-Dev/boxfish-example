@@ -44,7 +44,7 @@ partial class Player
 				.Radius( 5f )
 				.Run();
 
-			Camera.WorldPosition = tr.EndPosition;
+			Camera.WorldPosition = Noclip ? EyeWorldPosition + backward * _lerpDistance : tr.EndPosition;
 			Camera.WorldRotation = Rotation.LookAt( EyeWorldPosition - Camera.WorldPosition );
 
 			return;

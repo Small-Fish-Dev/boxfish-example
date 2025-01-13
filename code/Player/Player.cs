@@ -2,6 +2,8 @@
 
 public sealed partial class Player : Component
 {
+	public static Player Local { get; private set; }
+
 	[Property, Feature( "Components" )] 
 	public SkinnedModelRenderer Renderer { get; set; }
 
@@ -15,11 +17,14 @@ public sealed partial class Player : Component
 	public CitizenAnimationHelper AnimationHelper { get; set; }
 
 	public ClothingContainer Clothing { get; private set; }
+	public Vector3 ResetPostion { get; private set; }
 
 	protected override void OnStart()
 	{
 		base.OnStart();
-
+		
+		Local = this;
+		ResetPostion = WorldPosition;
 		StartAnimations();
 
 		Clothing = ClothingContainer.CreateFromLocalUser();
@@ -43,7 +48,7 @@ public sealed partial class Player : Component
 
 		// Reset position if we fall out of the world.
 		if ( WorldPosition.z <= -10f )
-			WorldPosition = Vector3.Up * 500f;
+			WorldPosition = ResetPostion;
 	}
 
 	private void UpdateHUD()

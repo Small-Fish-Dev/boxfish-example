@@ -1,15 +1,15 @@
 {
-  "__guid": "9525317f-62c8-49dc-a797-dbe9cf73c300",
+  "__guid": "c0935ab1-45d8-4396-a689-7519cb31b78c",
   "GameObjects": [
     {
-      "__guid": "7ff5fd9b-dcf8-488d-a7da-5f5c853ebc02",
+      "__guid": "429d2c73-3d1c-4562-818d-ab6e58a9e4a4",
       "Flags": 0,
       "Name": "World",
       "Enabled": true,
       "Components": [
         {
-          "__type": "Boxfish.Components.VoxelVolume",
-          "__guid": "66a2053c-2fb1-435c-afd7-b60d601736d8",
+          "__type": "BoxfishExample.ImporterExample",
+          "__guid": "f0999053-7731-4962-8cab-d8dce615e3e0",
           "Atlas": "resources/base.voxatlas",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -18,30 +18,11 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "VoxelScale": 25
-        },
-        {
-          "__type": "BoxfishExample.WorldGenerator",
-          "__guid": "9c7eb53c-2ee9-43c6-aae0-d88ac5eb831d",
-          "MaxTrees": 62,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OverrideSeed": null,
-          "Volume": {
-            "_type": "component",
-            "component_id": "66a2053c-2fb1-435c-afd7-b60d601736d8",
-            "go": "7ff5fd9b-dcf8-488d-a7da-5f5c853ebc02",
-            "component_type": "VoxelVolume"
-          },
-          "WorldRadius": 15
         }
       ],
       "Children": [
         {
-          "__guid": "f9c99131-3fbb-4ff4-98a0-c318f3753443",
+          "__guid": "bf61f920-c5b0-4f1a-9537-b4f640cbaf3a",
           "Flags": 0,
           "Name": "2D Skybox",
           "Tags": "skybox",
@@ -49,7 +30,7 @@
           "Components": [
             {
               "__type": "Sandbox.SkyBox2D",
-              "__guid": "b56667a8-6652-4315-8e7e-c8e71924f489",
+              "__guid": "065cbc99-b160-42ef-9485-0282934b24ee",
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -62,7 +43,7 @@
             },
             {
               "__type": "Sandbox.CubemapFog",
-              "__guid": "242da793-6567-448f-a886-07897ed524b9",
+              "__guid": "43a73fa2-cc0a-453b-b48d-8b49d3da88b7",
               "Blur": 0.5,
               "EndDistance": 4096,
               "FalloffExponent": 1,
@@ -82,7 +63,7 @@
           ]
         },
         {
-          "__guid": "d0fa7a22-d9cb-4409-bfd7-930fbde93375",
+          "__guid": "86d3db57-f3b4-48e6-8961-e31f040ff737",
           "Flags": 0,
           "Name": "Sun",
           "Rotation": "-0.0729315,0.4822396,0.1305433,0.8631827",
@@ -91,7 +72,7 @@
           "Components": [
             {
               "__type": "Sandbox.DirectionalLight",
-              "__guid": "389301c5-9f25-4fe3-aa75-f5ae9b839f2b",
+              "__guid": "0456a909-81ef-4452-af59-0aab63bf225c",
               "FogMode": "Enabled",
               "FogStrength": 1,
               "LightColor": "0.94419,0.97767,1,1",
@@ -109,10 +90,10 @@
       ]
     },
     {
-      "__guid": "566833d8-545c-4671-a1ab-503a2d3a34d4",
+      "__guid": "f13a69b6-cbde-4fae-975f-156f7c0d56e0",
       "Flags": 0,
       "Name": "Player",
-      "Position": "0,0,500",
+      "Position": "5598,7263.401,1758.672",
       "Enabled": true,
       "__Prefab": "prefabs/player.prefab",
       "__PrefabVariables": {}

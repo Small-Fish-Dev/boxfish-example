@@ -1,5 +1,4 @@
-﻿using Sandbox.Rendering;
-using System.Linq;
+﻿using static Sandbox.Volumes.VolumeSystem;
 
 namespace BoxfishExample;
 
@@ -15,47 +14,53 @@ partial class Player
 	public IReadOnlyDictionary<ushort, int> Items => _items;
 	private Dictionary<ushort, int> _items = new();
 
-	private VoxelVolume _volume;
-
 	public void TryGiveItem( ushort index, int amount )
 	{
 		_ = _items.TryGetValue( index, out var count );
 		_items[index] = Math.Clamp( count + amount, 0, MaxItemStack );
+		
+		if ( _items[index] <= 0 ) 
+			_items.Remove( index );
 	}
 
-	private void ChangeVoxel( Vector3Int position, Voxel voxel )
+	private void ChangeVoxel( VoxelVolume volume, Vector3Int position, Voxel voxel )
 	{
 		// Let's query the position, set the voxel, and update all affected neighboring chunks' meshes.
-		var query = _volume.Query( position );
-		_volume.SetVoxel( position, voxel );
+		var query = volume.Query( position );
+		volume.SetVoxel( position, voxel );
 
 		var neighbors = query.Chunk.GetNeighbors( query.LocalPosition.x, query.LocalPosition.y, query.LocalPosition.z );
-		Task.RunInThreadAsync( () => _volume.GenerateMeshes( neighbors ) );
+		Task.RunInThreadAsync( () => volume.GenerateMeshes( neighbors ) );
+
+		// Call callback from atlas item.
+		if ( !volume.Atlas.TryGet( query.Voxel.Texture, out var item ) )
+			return;
+
+		// We don't actually do anything in the base atlas with these, but you can do whatever you want!
+		if ( !voxel.Valid ) item.OnBlockBroken?.Invoke( query );
+		else item.OnBlockPlaced?.Invoke( query );
 	}
 
 	private void UpdateInteractions()
 	{
 		// Get VoxelVolume instance.
-		_volume ??= Scene.GetComponentInChildren<VoxelVolume>( includeSelf: true );
-		if ( !_volume.IsValid() )
-		{
-			_volume = null;
+		var volume = WorldGenerator.Instance?.Volume;
+		if ( !volume.IsValid() )
 			return;
-		}
 
 		// Get aimed voxel.
 		var trace = Scene.Trace.Ray( ViewRay, InteractionDistance )
 			.IgnoreGameObjectHierarchy( GameObject )
 			.Run();
 
-		var position = _volume.WorldToVoxel( trace.EndPosition + _volume.Scale / 2f - trace.Normal * 1f );
-		var query = _volume.Query( position );
+		var position = volume.WorldToVoxel( trace.EndPosition + volume.Scale / 2f - trace.Normal * 1f );
+		var query = volume.Query( position );
 
 		if ( !query.HasVoxel )
 			return;
 
 		// Highlight hovered voxel.
-		var bbox = BBox.FromPositionAndSize( query.GlobalPosition * _volume.Scale, _volume.Scale + 0.1f );
+		var bbox = BBox.FromPositionAndSize( query.GlobalPosition * volume.Scale, volume.Scale + 0.1f );
 		Gizmo.Draw.Color = Color.Black;
 		Gizmo.Draw.LineThickness = 5;
 		Gizmo.Draw.LineBBox( bbox );
@@ -64,7 +69,7 @@ partial class Player
 		if ( Input.Pressed( "MouseLeft" ) )
 		{
 			TryGiveItem( query.Voxel.Texture, 1 );
-			ChangeVoxel( position, Voxel.Empty );
+			ChangeVoxel( volume, position, Voxel.Empty );
 		}
 
 		// Place voxels..
@@ -76,9 +81,9 @@ partial class Player
 			var amount = kvp.Value;
 			if ( amount <= 0 ) return;
 
-			var placePosition = _volume.WorldToVoxel( trace.EndPosition + _volume.Scale / 2f + trace.Normal * 5f );
+			var placePosition = volume.WorldToVoxel( trace.EndPosition + volume.Scale / 2f + trace.Normal * 5f );
 			TryGiveItem( id, -1 );
-			ChangeVoxel( placePosition, new Voxel( Color32.White, id ) );
+			ChangeVoxel( volume, placePosition, new Voxel( Color32.White, id ) );
 		}
 	}
 }

@@ -2,6 +2,8 @@
 
 public sealed class WorldGenerator : Component
 {
+	public static WorldGenerator Instance { get; private set; }
+
 	[Property]
 	public VoxelVolume Volume { get; set; }
 
@@ -14,8 +16,16 @@ public sealed class WorldGenerator : Component
 	[Property]
 	public int? OverrideSeed { get; set; }
 
+	protected override void OnAwake()
+	{
+		base.OnAwake();
+		Instance = this;
+	}
+
 	protected override async Task OnLoad()
 	{
+		if ( Scene.IsEditor ) return;
+
 		// Generate some perlin noise terrain.
 		var chunks = new Dictionary<Vector3Int, VoxelVolume.Chunk>();
 		var seed = OverrideSeed ?? Game.Random.Int( 0, int.MaxValue - 1 );

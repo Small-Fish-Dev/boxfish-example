@@ -1,0 +1,44 @@
+Inventory {
+    position: absolute;
+    bottom: 8px;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(black, 0.5);
+
+    > .slots {
+        flex-direction: row;
+        gap: 4px;
+
+        > .slot {
+            position: relative;
+            width: 50px;
+            aspect-ratio: 1;
+            background-color: rgba(black, 0.2);
+
+            &.selected {
+                background-color: red;
+            }
+
+            > TextureIcon {
+                width: 100%;
+                height: 100%;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100%;
+                image-rendering: pixelated;
+            }
+
+            > .amount {
+                position: absolute;
+                right: 5px;
+                bottom: 0px;
+                font-size: 24px;
+                font-weight: bold;
+                font-family: Consolas;
+                color: white;
+                text-shadow: 2px 2px black;
+            }
+        }
+    }
+}
