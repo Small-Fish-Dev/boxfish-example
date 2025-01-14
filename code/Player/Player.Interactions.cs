@@ -29,6 +29,10 @@ partial class Player
 		var query = volume.Query( position );
 		volume.SetVoxel( position, voxel );
 
+		// Replace with newly created chunk.. (this kinda sucks, you can do this in many better ways..)
+		if ( query.Chunk == null )
+			query = volume.Query( position );
+
 		var neighbors = query.Chunk.GetNeighbors( query.LocalPosition.x, query.LocalPosition.y, query.LocalPosition.z );
 		Task.RunInThreadAsync( () => volume.GenerateMeshes( neighbors ) );
 
