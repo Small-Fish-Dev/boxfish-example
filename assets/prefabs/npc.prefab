@@ -1,0 +1,182 @@
+{
+  "RootObject": {
+    "__guid": "083baa22-ac58-4d35-9cf0-b4ebc25456ab",
+    "Flags": 0,
+    "Name": "npc",
+    "Tags": "nocollide",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "BoxfishExample.NPC",
+        "__guid": "114afe2d-0f59-4ac9-8910-0af827b1ef37",
+        "AnimationHelper": {
+          "_type": "component",
+          "component_id": "d96df722-eab8-4009-909c-74eaf137a189",
+          "go": "083baa22-ac58-4d35-9cf0-b4ebc25456ab",
+          "component_type": "CitizenAnimationHelper"
+        },
+        "Collider": {
+          "_type": "component",
+          "component_id": "daf6d4b0-5d92-4921-87d7-c3229ca03328",
+          "go": "60ead6d2-1075-4e98-8ba4-25b4fe8cfacc",
+          "component_type": "BoxCollider"
+        },
+        "Gravity": "0,0,-600",
+        "JumpForce": 250,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "PathRetraceFrequency": 1,
+        "Renderer": {
+          "_type": "component",
+          "component_id": "8af6ef3b-9065-40c6-937d-dd3dc03c5f53",
+          "go": "60ead6d2-1075-4e98-8ba4-25b4fe8cfacc",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "State": null,
+        "StepHeight": 16,
+        "WalkSpeed": 100
+      },
+      {
+        "__type": "Sandbox.Citizen.CitizenAnimationHelper",
+        "__guid": "d96df722-eab8-4009-909c-74eaf137a189",
+        "BodyWeight": 1,
+        "EyeSource": {
+          "_type": "gameobject",
+          "go": "f08278d3-9126-4292-896e-7816f37b2b2c"
+        },
+        "EyesWeight": 1,
+        "HeadWeight": 1,
+        "Height": null,
+        "IkLeftFoot": null,
+        "IkLeftHand": null,
+        "IkRightFoot": null,
+        "IkRightHand": null,
+        "LookAt": null,
+        "LookAtEnabled": false,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Target": {
+          "_type": "component",
+          "component_id": "8af6ef3b-9065-40c6-937d-dd3dc03c5f53",
+          "go": "60ead6d2-1075-4e98-8ba4-25b4fe8cfacc",
+          "component_type": "SkinnedModelRenderer"
+        }
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "60ead6d2-1075-4e98-8ba4-25b4fe8cfacc",
+        "Flags": 0,
+        "Name": "Model",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "8af6ef3b-9065-40c6-937d-dd3dc03c5f53",
+            "AnimationGraph": null,
+            "BodyGroups": 341,
+            "BoneMergeTarget": null,
+            "CreateAttachments": false,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/citizen/citizen.vmdl",
+            "Morphs": {},
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Sequence": {
+              "Name": null
+            },
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
+          },
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "daf6d4b0-5d92-4921-87d7-c3229ca03328",
+            "Center": "0,0,36",
+            "Friction": null,
+            "IsTrigger": false,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
+            "Scale": "24,24,72",
+            "Static": false,
+            "Surface": null,
+            "SurfaceVelocity": "0,0,0"
+          }
+        ]
+      },
+      {
+        "__guid": "f08278d3-9126-4292-896e-7816f37b2b2c",
+        "Flags": 0,
+        "Name": "Eyes",
+        "Position": "-42.30699,0,64.16373",
+        "Enabled": true
+      }
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

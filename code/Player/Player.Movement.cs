@@ -65,6 +65,7 @@ partial class Player
 
 		// Character controller helper...!
 		var trace = Scene.Trace.Box( Box, new Ray( 0, Vector3.Up ), 0f )
+			.WithoutTags( "nocollide" )
 			.IgnoreGameObjectHierarchy( GameObject );
 
 		var helper = new CharacterControllerHelper( trace, WorldPosition, Velocity );

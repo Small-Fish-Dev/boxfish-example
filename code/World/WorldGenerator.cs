@@ -7,6 +7,9 @@ public sealed class WorldGenerator : Component
 	[Property]
 	public VoxelVolume Volume { get; set; }
 
+	[Property]
+	public PrefabFile NPCPrefab { get; set; }
+
 	[Property, Range( 0, 64, 1 )]
 	public int MaxTrees { get; set; } = 16;
 
@@ -100,5 +103,9 @@ public sealed class WorldGenerator : Component
 
 		// Set volume's chunks and generate them.
 		await Volume.GenerateMeshes( chunks.Values );
+
+		// Spawn our spooky NPC...
+		if ( NPCPrefab.IsValid() )
+			NPC.SpawnToWorld( NPCPrefab.ResourcePath, Volume, Volume.ComputeBounds() );
 	}
 }

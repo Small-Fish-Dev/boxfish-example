@@ -23,6 +23,7 @@
           "__type": "BoxfishExample.WorldGenerator",
           "__guid": "9c7eb53c-2ee9-43c6-aae0-d88ac5eb831d",
           "MaxTrees": 62,
+          "NPCPrefab": "prefabs/npc.prefab",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -113,6 +114,7 @@
       "Flags": 0,
       "Name": "Player",
       "Position": "0,0,500",
+      "Tags": "nocollide",
       "Enabled": true,
       "__Prefab": "prefabs/player.prefab",
       "__PrefabVariables": {}

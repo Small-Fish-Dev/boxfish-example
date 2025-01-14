@@ -41,6 +41,7 @@ partial class Player
 
 			var tr = Scene.Trace.Ray( new Ray( EyeWorldPosition, backward ), _lerpDistance )
 				.IgnoreGameObjectHierarchy( GameObject )
+				.WithoutTags( "nocollide" )
 				.Radius( 5f )
 				.Run();
 

@@ -3,6 +3,7 @@
     "__guid": "566833d8-545c-4671-a1ab-503a2d3a34d4",
     "Flags": 0,
     "Name": "player",
+    "Tags": "nocollide",
     "Enabled": true,
     "Components": [
       {
@@ -54,8 +55,7 @@
         "BodyWeight": 1,
         "EyeSource": {
           "_type": "gameobject",
-          "go": "66956c94-5b4d-4fc3-b9a7-aa8267adb755",
-          "prefab": null
+          "go": "66956c94-5b4d-4fc3-b9a7-aa8267adb755"
         },
         "EyesWeight": 1,
         "HeadWeight": 1,
