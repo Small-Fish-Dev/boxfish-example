@@ -5,6 +5,7 @@ global using System.Threading.Tasks;
 global using Sandbox.Citizen;
 global using System.Linq;
 global using Sandbox.UI;
+global using System.Threading;
 
 global using Boxfish;
 global using Boxfish.Components;

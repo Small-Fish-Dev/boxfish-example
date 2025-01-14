@@ -44,10 +44,7 @@
         "__type": "Sandbox.Citizen.CitizenAnimationHelper",
         "__guid": "d96df722-eab8-4009-909c-74eaf137a189",
         "BodyWeight": 1,
-        "EyeSource": {
-          "_type": "gameobject",
-          "go": "f08278d3-9126-4292-896e-7816f37b2b2c"
-        },
+        "EyeSource": null,
         "EyesWeight": 1,
         "HeadWeight": 1,
         "Height": null,
@@ -86,10 +83,47 @@
             "BoneMergeTarget": null,
             "CreateAttachments": false,
             "CreateBoneObjects": false,
-            "MaterialGroup": null,
+            "MaterialGroup": "Skin04",
             "MaterialOverride": null,
             "Model": "models/citizen/citizen.vmdl",
-            "Morphs": {},
+            "Morphs": {
+              "openmouthR": 0.43381876,
+              "openmouthL": 0.43381876,
+              "jawsidewaysR": 0.75628096,
+              "jawsidewaysL": 0.75628096,
+              "openjawR": 0.99145555,
+              "openjawL": 0.99145555,
+              "browlowererL": 0.9797006,
+              "browlowererR": 0.9797006,
+              "outerbrowraiserL": 0.66068935,
+              "outerbrowraiserR": 0.66068935,
+              "innerbrowraiserL": 0.20896503,
+              "innerbrowraiserR": 0.20896503,
+              "nosewrinklerL": 0.7971936,
+              "nosewrinklerR": 0.7971936,
+              "lipcornerpullerL": 0.7811678,
+              "lipcornerpullerR": 0.7811678,
+              "lipcornerdepressorL": 0.84304106,
+              "lipcornerdepressorR": 0.84304106,
+              "upperlipraiserL": 0.050114185,
+              "upperlipraiserR": 0.050114185,
+              "cheekinflateL": 0.06598265,
+              "cheekinflateR": 0.06598265,
+              "LipSidewaysL": 0.029279757,
+              "LipSidewaysR": 0.029279757,
+              "jawthrust": 0.77124155,
+              "jawsuck": 0.83805245,
+              "eyelidbulgeupper": 0.96769863,
+              "eyelidbulgelower": 0.49956712,
+              "lippuckerer": 0.2698156,
+              "nostrildilator": 0.6183623,
+              "lowerLipFunneler": 0.6409928,
+              "upperLipFunneler": 0.823639,
+              "upperLipsTowardAndPart": 0.9199165,
+              "lowerLipsTowardAndPart": 0.8385833,
+              "ChinRaiser": 0.9580754,
+              "LowerLipDrepressor": 0.28214845
+            },
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -98,9 +132,13 @@
             "OnComponentUpdate": null,
             "Parameters": {
               "bools": {},
-              "ints": {},
+              "ints": {
+                "character_type": 0
+              },
               "floats": {},
-              "vectors": {},
+              "vectors": {
+                "aim_eyes": "100000000,100000000,100000000"
+              },
               "rotations": {}
             },
             "RenderOptions": {
@@ -138,13 +176,6 @@
             "SurfaceVelocity": "0,0,0"
           }
         ]
-      },
-      {
-        "__guid": "f08278d3-9126-4292-896e-7816f37b2b2c",
-        "Flags": 0,
-        "Name": "Eyes",
-        "Position": "-42.30699,0,64.16373",
-        "Enabled": true
       }
     ],
     "__variables": [],

@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Threading;
-
-namespace BoxfishExample;
+﻿namespace BoxfishExample;
 
 // Shrimple NPC that uses the voxel pathfinding!
 public class NPC : Component
@@ -145,7 +142,7 @@ public class NPC : Component
 				Game.Random.Int( bounds.Mins.x, bounds.Maxs.x ),
 				Game.Random.Int( bounds.Mins.y, bounds.Maxs.y ),
 				0
-			);
+			) / 2;
 
 			var query = default( VoxelVolume.VoxelQueryData );
 			while ( pos.z++ < bounds.Maxs.z )
@@ -165,7 +162,7 @@ public class NPC : Component
 			}
 
 			// We have a position!
-			gameObject.WorldPosition = volume.VoxelToWorld( query.GlobalPosition ) + Vector3.Up;
+			gameObject.WorldPosition = volume.VoxelToWorld( query.GlobalPosition ) + Vector3.Up * 500f;
 
 			return npc;
 		}
@@ -196,7 +193,6 @@ public class NPC : Component
 		if ( !AnimationHelper.IsValid() )
 			return;
 
-		AnimationHelper.EyesWeight = 1f;
 		AnimationHelper.IsGrounded = IsGrounded;
 
 		AnimationHelper.WithVelocity( Velocity );
@@ -240,18 +236,18 @@ public class NPC : Component
 			if ( _stalkTarget.IsValid() )
 				GeneratePathTo( _stalkTarget.WorldPosition );
 
-			NextTraceCheck = 0f;
+			NextTraceCheck = PathRetraceFrequency;
 		}
 
 		// Keep checking node status and move towards next node.
-		if ( CurrentPath.IsEmpty )
-			return;
-
-		if ( HasArrivedDestination || SinceStateChanged > 10f )
+		if ( HasArrivedDestination || SinceStateChanged > 10f || CurrentPath.IsEmpty )
+		{
 			State = "idle";
+			return;
+		}
 
-		var minDistanceTillNext = _volume.Scale * 1.2f;
-		var voxelCenter = ((Vector3)(_volume.Scale / 2f)).WithZ( _volume.Scale );
+		var minDistanceTillNext = _volume.Scale * 1.5f;
+		var voxelCenter = (((Vector3)_volume.Scale) / 2f).WithZ( _volume.Scale );
 
 		var currentNode = CurrentPath.Nodes[0];
 		var lastNode = CurrentPath.Nodes[^1];
@@ -260,7 +256,7 @@ public class NPC : Component
 		if ( WorldPosition.WithZ( 0 ).Distance( _volume.VoxelToWorld( nextNode.Data.GlobalPosition ).WithZ( 0 ) + voxelCenter ) <= minDistanceTillNext )
 			CurrentPath.Nodes.RemoveAt( 0 );
 
-		if ( currentNode == lastNode || currentNode is null )
+		if ( currentNode == lastNode )
 			HasArrivedDestination = true;
 
 		MoveTowards( nextNode );
