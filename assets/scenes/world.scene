@@ -8,8 +8,8 @@
       "Enabled": true,
       "Components": [
         {
-          "__type": "Boxfish.Components.VoxelVolume",
-          "__guid": "66a2053c-2fb1-435c-afd7-b60d601736d8",
+          "__type": "Boxfish.Library.VoxelVolume",
+          "__guid": "8a550a2c-de6e-48fa-afef-7d0c07f98bd6",
           "Atlas": "resources/base.voxatlas",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -33,7 +33,7 @@
           "OverrideSeed": null,
           "Volume": {
             "_type": "component",
-            "component_id": "66a2053c-2fb1-435c-afd7-b60d601736d8",
+            "component_id": "8a550a2c-de6e-48fa-afef-7d0c07f98bd6",
             "go": "7ff5fd9b-dcf8-488d-a7da-5f5c853ebc02",
             "component_type": "VoxelVolume"
           },

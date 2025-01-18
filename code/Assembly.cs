@@ -8,5 +8,5 @@ global using Sandbox.UI;
 global using System.Threading;
 
 global using Boxfish;
-global using Boxfish.Components;
+global using Boxfish.Library;
 global using Boxfish.Utility;

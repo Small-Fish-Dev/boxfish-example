@@ -36,7 +36,7 @@ public sealed class WorldGenerator : Component
 
 		VoxelVolume.Chunk CreatePerlinChunk( int x, int y )
 		{
-			var chunk = new VoxelVolume.Chunk( x, y, 0, Volume );
+			var chunk = new VoxelVolume.Chunk( x, y, 0, chunks );
 
 			for ( byte i = 0; i < VoxelUtils.CHUNK_SIZE; i++ )
 				for ( byte j = 0; j < VoxelUtils.CHUNK_SIZE; j++ )

@@ -25,16 +25,11 @@ partial class Player
 
 	private void ChangeVoxel( VoxelVolume volume, Vector3Int position, Voxel voxel )
 	{
-		// Let's query the position, set the voxel, and update all affected neighboring chunks' meshes.
+		// Let's query the position, and set the voxel using SetTrackedVoxel.
 		var query = volume.Query( position );
-		volume.SetVoxel( position, voxel );
+		if ( query.HasVoxel ) return;
 
-		// Replace with newly created chunk.. (this kinda sucks, you can do this in many better ways..)
-		if ( query.Chunk == null )
-			query = volume.Query( position );
-
-		var neighbors = query.Chunk.GetNeighbors( query.LocalPosition.x, query.LocalPosition.y, query.LocalPosition.z );
-		Task.RunInThreadAsync( () => volume.GenerateMeshes( neighbors ) );
+		volume.SetTrackedVoxel( position, voxel );
 
 		// Call callback from atlas item.
 		if ( !volume.Atlas.TryGet( query.Voxel.Texture, out var item ) )

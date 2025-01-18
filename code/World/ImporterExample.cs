@@ -4,7 +4,7 @@ namespace BoxfishExample;
 public sealed class ImporterExample : VoxelVolume, Component.ExecuteInEditor
 {
 	public override bool StoreEditorChunks { get; } = true;
-	public override bool IgnoreOOBFaces { get; } = false; // Doesn't really work with elevation :/
+	public override bool IgnoreOOBFaces { get; } = false; // TODO: Doesn't really work with elevation :/
 	protected override async void OnStart()
 	{
 		base.OnStart();
@@ -16,10 +16,16 @@ public sealed class ImporterExample : VoxelVolume, Component.ExecuteInEditor
 	{
 		base.OnUpdate();
 
-		// Render chunk models in editor!
-		if ( Game.IsPlaying || !Scene.IsEditor || Chunks == null || !Chunks.Any() )
+		if ( Chunks == null || !Chunks.Any() )
 			return;
 
+		if ( Game.IsPlaying || !Scene.IsEditor )
+		{
+			base.OnUpdate();
+			return;
+		}
+
+		// Render chunk models in editor only!
 		foreach ( var (position, model) in EditorChunks )
 		{
 			var transform = new Transform();

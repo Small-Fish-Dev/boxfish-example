@@ -95,6 +95,7 @@
       "Flags": 0,
       "Name": "Player",
       "Position": "5598,7263.401,1758.672",
+      "Tags": "nocollide",
       "Enabled": true,
       "__Prefab": "prefabs/player.prefab",
       "__PrefabVariables": {}
