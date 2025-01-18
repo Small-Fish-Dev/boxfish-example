@@ -27,7 +27,7 @@ partial class Player
 	{
 		// Let's query the position, and set the voxel using SetTrackedVoxel.
 		var query = volume.Query( position );
-		if ( query.HasVoxel ) return;
+		if ( volume.IsValidVoxel( voxel ) && query.HasVoxel ) return;
 
 		volume.SetTrackedVoxel( position, voxel );
 
