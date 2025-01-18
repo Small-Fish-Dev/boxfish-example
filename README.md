@@ -10,6 +10,10 @@ You can also find it on [sbox.game](https://sbox.game/fish/boxfish-example).
 This really is a minimal example, you can do so much more with the library that this example doesn't show.
 There are a few commented out examples in this project on how to utilize some parts of the Boxfish API.
 
+#### Credits
+
+This example project uses royalty free sounds from https://www.zapsplat.com/
+
 #### Boxfish
 
 You can find the MIT licensed source code for Boxfish [here](https://github.com/Small-Fish-Dev/boxfish/tree/main) or on [sbox.game](https://sbox.game/fish/boxfish).

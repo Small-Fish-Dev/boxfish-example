@@ -101,7 +101,9 @@ public class NPC : Component
 	protected override void OnStart()
 	{
 		base.OnStart();
+
 		ResetPostion = WorldPosition;
+		Renderer.AddVoxelFootsteps();
 	}
 
 	protected override void OnUpdate()

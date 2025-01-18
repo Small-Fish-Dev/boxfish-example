@@ -10,7 +10,7 @@
         {
           "__type": "Boxfish.Library.VoxelVolume",
           "__guid": "8a550a2c-de6e-48fa-afef-7d0c07f98bd6",
-          "Atlas": "resources/base.voxatlas",
+          "Atlas": "resources/atlas/my_atlas.voxatlas",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -59,7 +59,7 @@
               "OnComponentUpdate": null,
               "SkyIndirectLighting": true,
               "SkyMaterial": "materials/skybox/skybox_overcast_01.vmat",
-              "Tint": "1,1,1,1"
+              "Tint": "0.61395,0.61395,0.61395,1"
             },
             {
               "__type": "Sandbox.CubemapFog",
@@ -78,7 +78,7 @@
               "OnComponentUpdate": null,
               "Sky": "materials/skybox/skybox_overcast_01.vmat",
               "StartDistance": 10,
-              "Tint": "1,1,1,1"
+              "Tint": "0.61569,0.61569,0.61569,1"
             }
           ]
         },
@@ -95,7 +95,7 @@
               "__guid": "389301c5-9f25-4fe3-aa75-f5ae9b839f2b",
               "FogMode": "Enabled",
               "FogStrength": 1,
-              "LightColor": "0.94419,0.97767,1,1",
+              "LightColor": "0.61569,0.61569,0.61569,1",
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,

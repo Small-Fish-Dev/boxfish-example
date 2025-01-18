@@ -1,5 +1,4 @@
-﻿
-namespace BoxfishExample;
+﻿namespace BoxfishExample;
 
 public sealed class ImporterExample : VoxelVolume, Component.ExecuteInEditor
 {

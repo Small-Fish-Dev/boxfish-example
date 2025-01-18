@@ -25,13 +25,19 @@ public sealed partial class Player : Component
 		
 		Local = this;
 		ResetPostion = WorldPosition;
-		StartAnimations();
-
 		Clothing = ClothingContainer.CreateFromLocalUser();
 
 		if ( Renderer.IsValid() )
 		{
 			Clothing.Apply( Renderer );
+
+			/*
+			// https://i.imgur.com/R1fav6k.png
+			// The following code shows you how you would implement custom step sounds for different textures.
+			// Look at the image above to see what it would look like in the AtlasResource.
+			// Please look at code/Extensions.cs if you wish to see the source.
+			*/
+			Renderer.AddVoxelFootsteps();
 		}
 	}
 

@@ -35,7 +35,7 @@ partial class Player
 		if ( Noclip )
 		{
 			var up = Input.Down( "Jump" ) ? 1 : 0;
-			WishVelocity = Input.AnalogMove.WithZ( up );
+			WishVelocity = Input.AnalogMove;
 			if ( !WishVelocity.IsNearlyZero() )
 			{
 				WishVelocity *= EyeAngles.ToRotation();
@@ -43,6 +43,7 @@ partial class Player
 				WishVelocity *= NoclipSpeed;
 			}
 
+			WishVelocity += Vector3.Up * up * NoclipSpeed;
 			WorldPosition += WishVelocity * Time.Delta;
 
 			Velocity = Vector3.Zero;
