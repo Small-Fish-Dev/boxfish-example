@@ -12,7 +12,10 @@
       },
       "Opaque": false,
       "OnBlockPlaced": null,
-      "OnBlockBroken": null
+      "OnBlockBroken": null,
+      "_data": {
+        "stepsound": "default-step"
+      }
     },
     {
       "Name": "Grass",
@@ -24,7 +27,10 @@
       },
       "Opaque": false,
       "OnBlockPlaced": null,
-      "OnBlockBroken": null
+      "OnBlockBroken": null,
+      "_data": {
+        "stepsound": "default-step"
+      }
     },
     {
       "Name": "Dirt",
@@ -36,7 +42,10 @@
       },
       "Opaque": false,
       "OnBlockPlaced": null,
-      "OnBlockBroken": null
+      "OnBlockBroken": null,
+      "_data": {
+        "stepsound": "default-step"
+      }
     },
     {
       "Name": "Leaves",
@@ -48,7 +57,10 @@
       },
       "Opaque": true,
       "OnBlockPlaced": null,
-      "OnBlockBroken": null
+      "OnBlockBroken": null,
+      "_data": {
+        "stepsound": "leaves-step"
+      }
     },
     {
       "Name": "Logs",
@@ -60,7 +72,10 @@
       },
       "Opaque": false,
       "OnBlockPlaced": null,
-      "OnBlockBroken": null
+      "OnBlockBroken": null,
+      "_data": {
+        "stepsound": "wood-step"
+      }
     }
   ],
   "__references": [],

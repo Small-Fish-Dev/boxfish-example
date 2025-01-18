@@ -26,7 +26,7 @@ public static class Extensions
 				return;
 
 			// Look for a "stepsound" field in data of AtlasItems..
-			var soundEvent = "default-footstep";
+			var soundEvent = "default-step";
 			if ( volume.Atlas.TryGet( query.Voxel.Texture, out var atlasItem ) )
 				soundEvent = atlasItem.GetData( "stepsound", soundEvent );
 
