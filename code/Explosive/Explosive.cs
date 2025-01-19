@@ -147,11 +147,10 @@ public sealed class Explosive : Component
 		var radius = _volume.Scale / 2f * VoxelRadius;
 		var sphere = new Sphere( WorldPosition, radius );
 		var objects = Scene.FindInPhysics( sphere );
-		Log.Error( objects.Count() );
+
 		if ( ForceToExplosives.HasValue )
 		{
 			var curve = ForceToExplosives.Value;
-			DebugOverlay.Sphere( sphere, duration: 5f );
 
 			foreach ( var obj in objects )
 			{
@@ -162,11 +161,9 @@ public sealed class Explosive : Component
 				var normal = (explosive.WorldPosition - WorldPosition).Normal;
 				var distance = explosive.WorldPosition.Distance( WorldPosition ) / radius;
 				distance = distance.Clamp( 0, 1 );
-				Log.Error( $"xd {normal} {distance}" );
 
 				var force = curve.Evaluate( distance );
 				explosive.Velocity += normal * force;
-				DebugOverlay.Text( obj.WorldPosition, $"{distance}", duration: 5f );
 			}
 		}
 
