@@ -27,7 +27,10 @@ partial class Player
 		var query = volume.Query( position );
 		if ( volume.IsValidVoxel( voxel ) && query.HasVoxel ) return;
 
-		volume.SetTrackedVoxel( position, voxel );
+		if ( volume is NetworkedVoxelVolume netVolume ) // We want to broadcast set the voxel.
+			netVolume.BroadcastSet( position, voxel );
+		else
+			volume.SetTrackedVoxel( position, voxel );
 
 		// Call callback from atlas item.
 		if ( !volume.Atlas.TryGet( query.Voxel.Texture, out var item ) )

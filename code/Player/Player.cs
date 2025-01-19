@@ -33,6 +33,9 @@ public sealed partial class Player : Component
 		ResetPostion = WorldPosition;
 		Clothing = ClothingContainer.CreateFromLocalUser();
 
+		if ( Camera.IsValid() )
+			Camera.Enabled = !IsProxy;
+
 		if ( Renderer.IsValid() )
 		{
 			Clothing.Apply( Renderer );

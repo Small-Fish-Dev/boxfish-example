@@ -27,7 +27,7 @@ public sealed class WorldGenerator : Component
 
 	protected override async Task OnLoad()
 	{
-		if ( Scene.IsEditor ) return;
+		if ( Scene.IsEditor || IsProxy ) return;
 
 		// Generate some perlin noise terrain.
 		var chunks = new Dictionary<Vector3Int, VoxelVolume.Chunk>();

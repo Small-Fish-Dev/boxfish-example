@@ -19,9 +19,9 @@
         "EffectRadius": 12,
         "ExplodeCooldown": 3,
         "ExplodeOnImpact": false,
-        "ExplodeSound": null,
+        "ExplodeSound": "sounds/explosion/explosion.sound",
         "ForceToExplosives": {
-          "rangey": "200,400",
+          "rangey": "400,700",
           "frames": [
             {
               "x": 0,

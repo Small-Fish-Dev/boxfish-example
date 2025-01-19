@@ -18,7 +18,7 @@ public class NPC : Component
 		get => _state;
 		set
 		{
-			if ( value == _state )
+			if ( value == _state || _states is null )
 				return;
 
 			if ( !_states.TryGetValue( value, out _ ) )
@@ -62,7 +62,7 @@ public class NPC : Component
 			HasArrivedDestination = false;
 		}
 	}
-	[Sync] private VoxelVolume.AStarPath _currentPath { get; set; }
+	private VoxelVolume.AStarPath _currentPath { get; set; }
 
 	public TimeSince SinceStateChanged { get; private set; }
 	public TimeUntil NextTraceCheck { get; private set; }
@@ -109,7 +109,6 @@ public class NPC : Component
 	protected override void OnUpdate()
 	{
 		UpdateAnimations();
-		RenderPath();
 
 		if ( IsProxy ) // maybe we want multiplayer in a future example...?
 			return;
@@ -122,6 +121,7 @@ public class NPC : Component
 		StateChanged = false;
 
 		UpdateMovement();
+		RenderPath();
 
 		// Reset position if we fall out of the world.
 		if ( WorldPosition.z <= -10f )
@@ -166,6 +166,7 @@ public class NPC : Component
 
 			// We have a position!
 			gameObject.WorldPosition = volume.VoxelToWorld( query.GlobalPosition ) + Vector3.Up * 500f;
+			gameObject.NetworkSpawn();
 
 			return npc;
 		}

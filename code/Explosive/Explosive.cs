@@ -50,7 +50,7 @@ public sealed class Explosive : Component
 	[Property, Category( "Physics" )]
 	public Curve? ForceToExplosives { get; set; } = new Curve( new( 0f, 1f ), new( 1f, 0f ) )
 	{
-		ValueRange = new( 200f, 400f )
+		ValueRange = new( 400f, 700f )
 	};
 
 	[Property, Category( "Physics" )]
@@ -141,7 +141,7 @@ public sealed class Explosive : Component
 			return;
 
 		if ( ExplodeSound.IsValid() )
-			CreateSound( ExplodeSound, WorldPosition, 1f );
+			CreateSound( ExplodeSound, WorldPosition, 0.2f );
 
 		// Apply force to nearby explosives.
 		var radius = _volume.Scale / 2f * VoxelRadius;

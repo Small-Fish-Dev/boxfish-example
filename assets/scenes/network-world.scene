@@ -1,0 +1,184 @@
+{
+  "__guid": "707a2744-8106-4b4d-a502-c00774a3d28a",
+  "GameObjects": [
+    {
+      "__guid": "af2c1411-8dec-4c84-b627-789318cd104c",
+      "Flags": 0,
+      "Name": "NetworkManager",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 3,
+      "Components": [
+        {
+          "__type": "Sandbox.NetworkHelper",
+          "__guid": "975cce63-4a11-4325-ad90-cf9b8908e52d",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player.prefab"
+          },
+          "SpawnPoints": [
+            {
+              "_type": "gameobject",
+              "go": "18737cbc-a0b2-48bf-a803-9ab9d7571737"
+            }
+          ],
+          "StartServer": true
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "18737cbc-a0b2-48bf-a803-9ab9d7571737",
+          "Flags": 0,
+          "Name": "Spawn",
+          "Position": "0,0,500",
+          "Enabled": true
+        }
+      ]
+    },
+    {
+      "__guid": "2969e0e5-5d07-46cf-bc50-e31456725f7b",
+      "Flags": 0,
+      "Name": "World",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 3,
+      "OwnerTransfer": 0,
+      "Components": [
+        {
+          "__type": "Boxfish.Library.NetworkedVoxelVolume",
+          "__guid": "00bdcbd1-1e59-4798-ad6a-ce6b96da78b3",
+          "Atlas": "resources/atlas/my_atlas.voxatlas",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "VoxelScale": 25
+        },
+        {
+          "__type": "BoxfishExample.WorldGenerator",
+          "__guid": "06abfb3e-7257-4e22-9d90-8f3e990196c4",
+          "MaxTrees": 62,
+          "NPCPrefab": "prefabs/npc.prefab",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OverrideSeed": null,
+          "Volume": {
+            "_type": "component",
+            "component_id": "00bdcbd1-1e59-4798-ad6a-ce6b96da78b3",
+            "go": "2969e0e5-5d07-46cf-bc50-e31456725f7b",
+            "component_type": "NetworkedVoxelVolume"
+          },
+          "WorldRadius": 15
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "e64806dc-7c72-4666-aa9c-e9fe0c3b7245",
+          "Flags": 0,
+          "Name": "2D Skybox",
+          "Tags": "skybox",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SkyBox2D",
+              "__guid": "42ae731c-8aa2-4223-8e7f-2a7b2c7df0f4",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SkyIndirectLighting": true,
+              "SkyMaterial": "materials/skybox/skybox_overcast_01.vmat",
+              "Tint": "0.61395,0.61395,0.61395,1"
+            },
+            {
+              "__type": "Sandbox.CubemapFog",
+              "__guid": "51c5eff2-2a22-48f7-98f3-19ecc46d7d50",
+              "Blur": 0.5,
+              "EndDistance": 4096,
+              "FalloffExponent": 1,
+              "HeightExponent": 2,
+              "HeightStart": 2000,
+              "HeightWidth": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Sky": "materials/skybox/skybox_overcast_01.vmat",
+              "StartDistance": 10,
+              "Tint": "0.61569,0.61569,0.61569,1"
+            }
+          ]
+        },
+        {
+          "__guid": "e5509ac6-52e5-4b78-9a99-6734cbe40c2e",
+          "Flags": 0,
+          "Name": "Sun",
+          "Rotation": "-0.0729315,0.4822396,0.1305433,0.8631827",
+          "Tags": "light_directional,light",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.DirectionalLight",
+              "__guid": "2fc69452-b0fd-403c-87a6-033daab99347",
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "0.61569,0.61569,0.61569,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Shadows": true,
+              "SkyColor": "0.2532,0.32006,0.35349,1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "NetworkInterpolation": true,
+    "PhysicsSubSteps": 1,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "Metadata": {},
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "ResourceVersion": 2,
+  "Title": null,
+  "Description": null,
+  "__references": [],
+  "__version": 2
+}
