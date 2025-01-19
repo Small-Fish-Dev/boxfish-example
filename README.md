@@ -12,13 +12,13 @@ There are a few commented out examples in this project on how to utilize some pa
 
 #### Examples
 
-**[Voxel Footstep Sounds](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/Player/Player.cs#L40)**
-**[Physics Explosives](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/Explosive/Explosive.cs)**
-**[Voxel Breaking/Placing](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/Player/Player.Interactions.cs)**
-**[Importing .vxl Files](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/World/ImporterExample.cs)**
-**[World Generation](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/World/WorldGenerator.cs)**
-**[Voxel Pathfinding](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/NPC/NPC.cs#L321)**
-**[Block Icon Generation](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/UI/Utility/VoxelIcon.cs)**
+-   **[Voxel Footstep Sounds](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/Player/Player.cs#L40)**
+-   **[Physics Explosives](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/Explosive/Explosive.cs)**
+-   **[Voxel Breaking/Placing](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/Player/Player.Interactions.cs)**
+-   **[Importing .vxl Files](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/World/ImporterExample.cs)**
+-   **[World Generation](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/World/WorldGenerator.cs)**
+-   **[Voxel Pathfinding](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/NPC/NPC.cs#L321)**
+-   **[Block Icon Generation](https://github.com/Small-Fish-Dev/boxfish-example/blob/main/code/UI/Utility/VoxelIcon.cs)**
 
 #### Credits
 
