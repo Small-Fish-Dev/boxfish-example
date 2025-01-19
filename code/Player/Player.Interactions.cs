@@ -53,7 +53,10 @@ partial class Player
 			.IgnoreGameObjectHierarchy( GameObject )
 			.Run();
 
-		var position = volume.WorldToVoxel( trace.EndPosition + volume.Scale / 2f - trace.Normal * 1f );
+		var offset = Vector3.One * volume.Scale / 2f; // We need this cuz we want the center of the block.
+		offset *= volume.WorldRotation;
+
+		var position = volume.WorldToVoxel( trace.EndPosition + offset - trace.Normal * 1f );
 		var query = volume.Query( position );
 
 		if ( !query.HasVoxel )
@@ -61,6 +64,7 @@ partial class Player
 
 		// Highlight hovered voxel.
 		var bbox = BBox.FromPositionAndSize( query.GlobalPosition * volume.Scale, volume.Scale + 0.1f );
+		Gizmo.Transform = volume.WorldTransform;
 		Gizmo.Draw.Color = Color.Black;
 		Gizmo.Draw.LineThickness = 5;
 		Gizmo.Draw.LineBBox( bbox );

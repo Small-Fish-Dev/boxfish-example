@@ -22,7 +22,7 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "CsProjName": "",
-    "StartupScene": "scenes/world.scene",
+    "StartupScene": "scenes/network-world.scene",
     "ControlModes": {
       "Keyboard": false,
       "VR": false,

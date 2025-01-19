@@ -55,6 +55,7 @@ public sealed partial class Player : Component
 		base.OnUpdate();
 
 		UpdateAnimations();
+		UpdateModel();
 
 		if ( IsProxy )
 			return;
@@ -62,7 +63,6 @@ public sealed partial class Player : Component
 		UpdateHUD();
 		UpdateCamera();
 		UpdateMovement();
-		UpdateModel();
 		UpdateInteractions();
 
 		// Spawn explosives.
@@ -96,9 +96,12 @@ public sealed partial class Player : Component
 	{
 		if ( !Renderer.IsValid() )
 			return;
+	
+		// Rotate model.
+		Renderer.WorldRotation = Rotation.FromYaw( EyeAngles.yaw );
 
 		// Update RenderType.
-		var renderType = Thirdperson ? ModelRenderer.ShadowRenderType.On : ModelRenderer.ShadowRenderType.ShadowsOnly;
+		var renderType = IsProxy || Thirdperson ? ModelRenderer.ShadowRenderType.On : ModelRenderer.ShadowRenderType.ShadowsOnly;
 		Renderer.RenderType = renderType;
 
 		// Update child RenderType.
