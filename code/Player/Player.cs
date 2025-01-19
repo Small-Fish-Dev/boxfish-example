@@ -4,6 +4,12 @@ public sealed partial class Player : Component
 {
 	public static Player Local { get; private set; }
 
+	[Property, Feature( "Explosive" )]
+	public GameObject ExplosivePrefab { get; set; }
+
+	[Property, Feature( "Explosive" )]
+	public float LaunchForce { get; set; } = 500f;
+
 	[Property, Feature( "Components" )] 
 	public SkinnedModelRenderer Renderer { get; set; }
 
@@ -23,7 +29,7 @@ public sealed partial class Player : Component
 	{
 		base.OnStart();
 		
-		Local = this;
+		if ( !IsProxy ) Local = this;
 		ResetPostion = WorldPosition;
 		Clothing = ClothingContainer.CreateFromLocalUser();
 
@@ -37,7 +43,7 @@ public sealed partial class Player : Component
 			// Look at the image above to see what it would look like in the AtlasResource.
 			// Please look at code/Extensions.cs if you wish to see the source.
 			*/
-			Renderer.AddVoxelFootsteps();
+			Renderer.AddVoxelFootsteps( 0.2f );
 		}
 	}
 
@@ -45,12 +51,29 @@ public sealed partial class Player : Component
 	{
 		base.OnUpdate();
 
+		UpdateAnimations();
+
+		if ( IsProxy )
+			return;
+
 		UpdateHUD();
 		UpdateCamera();
 		UpdateMovement();
-		UpdateAnimations();
 		UpdateModel();
 		UpdateInteractions();
+
+		// Spawn explosives.
+		if ( Input.Pressed( "Interact" ) && ExplosivePrefab.IsValid() )
+		{
+			var gameObject = ExplosivePrefab.Clone();
+			gameObject.WorldPosition = ViewRay.Position + ViewRay.Forward * 5f;
+
+			var explosive = gameObject.Components.Get<Explosive>( true );
+			if ( explosive.IsValid() )
+				explosive.Velocity = ViewRay.Forward * LaunchForce;
+
+			gameObject.NetworkSpawn();
+		}
 
 		// Reset position if we fall out of the world.
 		if ( WorldPosition.z <= -10f )
@@ -70,9 +93,6 @@ public sealed partial class Player : Component
 	{
 		if ( !Renderer.IsValid() )
 			return;
-
-		// Rotate renderer.
-		Renderer.WorldRotation = Rotation.FromYaw( EyeAngles.yaw );
 
 		// Update RenderType.
 		var renderType = Thirdperson ? ModelRenderer.ShadowRenderType.On : ModelRenderer.ShadowRenderType.ShadowsOnly;

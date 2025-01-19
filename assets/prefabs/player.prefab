@@ -27,9 +27,14 @@
           "go": "1350d4dc-551f-421b-b503-af32cbcef9a6",
           "component_type": "BoxCollider"
         },
+        "ExplosivePrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/tnt_explosive.prefab"
+        },
         "Gravity": "0,0,-600",
         "InteractionDistance": 128,
         "JumpForce": 250,
+        "LaunchForce": 500,
         "MaxCameraDistance": 500,
         "MaxItemStack": 32,
         "MinCameraDistance": 100,

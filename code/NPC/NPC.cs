@@ -50,7 +50,7 @@ public class NPC : Component
 	[Property, Range( 0f, 32f, 0.5f ), Feature( "Movement" )]
 	public Vector3 Gravity { get; set; }
 
-	public bool HasArrivedDestination { get; private set; } = true;
+	[Sync] public bool HasArrivedDestination { get; private set; } = true;
 	public VoxelVolume.AStarPath CurrentPath
 	{
 		get => _currentPath;
@@ -62,16 +62,16 @@ public class NPC : Component
 			HasArrivedDestination = false;
 		}
 	}
-	private VoxelVolume.AStarPath _currentPath { get; set; }
+	[Sync] private VoxelVolume.AStarPath _currentPath { get; set; }
 
 	public TimeSince SinceStateChanged { get; private set; }
 	public TimeUntil NextTraceCheck { get; private set; }
 	public bool StateChanged { get; private set; }
 
-	public Vector3 LookAt { get; set; }
-	public Vector3 WishVelocity { get; private set; }
-	public Vector3 Velocity { get; set; }
-	public GameObject GroundObject { get; private set; }
+	[Sync] public Vector3 LookAt { get; set; }
+	[Sync] public Vector3 WishVelocity { get; private set; }
+	[Sync] public Vector3 Velocity { get; set; }
+	[Sync] public GameObject GroundObject { get; private set; }
 	public bool IsGrounded => GroundObject.IsValid();
 	public BBox Box => Collider.IsValid()
 		? BBox.FromPositionAndSize( Collider.Center, Collider.Scale )
@@ -103,11 +103,14 @@ public class NPC : Component
 		base.OnStart();
 
 		ResetPostion = WorldPosition;
-		Renderer.AddVoxelFootsteps();
+		Renderer.AddVoxelFootsteps( 0.1f );
 	}
 
 	protected override void OnUpdate()
 	{
+		UpdateAnimations();
+		RenderPath();
+
 		if ( IsProxy ) // maybe we want multiplayer in a future example...?
 			return;
 
@@ -119,8 +122,6 @@ public class NPC : Component
 		StateChanged = false;
 
 		UpdateMovement();
-		UpdateAnimations();
-		RenderPath();
 
 		// Reset position if we fall out of the world.
 		if ( WorldPosition.z <= -10f )
@@ -176,16 +177,25 @@ public class NPC : Component
 			return;
 
 		Gizmo.Transform = global::Transform.Zero;
+		Gizmo.Draw.LineThickness = 1f;
+		Gizmo.Draw.Color = Color.Blue;
+
+		var previous = CurrentPath.Nodes.ElementAtOrDefault( 0 );
 		for ( int i = 1; i < CurrentPath.Count; i++ )
 		{
 			var node = CurrentPath.Nodes.ElementAtOrDefault( i );
-			var previous = CurrentPath.Nodes.ElementAtOrDefault( i - 1 );
+			previous = CurrentPath.Nodes.ElementAtOrDefault( i - 1 );
 
 			var nodePosition = _volume.VoxelToWorld( node.Data.GlobalPosition + Vector3Int.Up );
-			var previousPosition = _volume.VoxelToWorld( previous.Data.GlobalPosition + Vector3Int.Up );
+			var heightDifference = node.Data.GlobalPosition.z - previous.Data.GlobalPosition.z;
+			if ( heightDifference != 0 )
+			{
+				var from = _volume.VoxelToWorld( previous.Data.GlobalPosition + Vector3Int.Up );
+				Gizmo.Draw.Line( from, from + Vector3Int.Up * _volume.Scale * heightDifference );
+			}
 
-			Gizmo.Draw.LineThickness = 1f;
-			Gizmo.Draw.Color = Color.Blue;
+			var previousPosition = _volume.VoxelToWorld( previous.Data.GlobalPosition + Vector3Int.Up * (1 + heightDifference) );
+
 			Gizmo.Draw.Line( previousPosition, nodePosition );
 		}
 	}
@@ -218,7 +228,11 @@ public class NPC : Component
 	{
 		// Pick a stalk target..
 		if ( StateChanged || !_stalkTarget.IsValid() )
-			_stalkTarget = Scene.GetComponentInChildren<Player>( true );
+		{
+			var players = Scene.GetComponentsInChildren<Player>( true );
+			var index = Game.Random.Int( 0, players.Count() - 1 );
+			_stalkTarget = players.ElementAtOrDefault( index );
+		}
 
 		if ( !_stalkTarget.IsValid() ) return;
 

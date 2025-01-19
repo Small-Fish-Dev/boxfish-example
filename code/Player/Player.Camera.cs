@@ -8,7 +8,7 @@ partial class Player
 	[Property, Range( 5, 500, 0.5f ), Feature( "Camera" )]
 	public float MaxCameraDistance { get; set; }
 
-	public Angles EyeAngles { get; private set; }
+	[Sync] public Angles EyeAngles { get; set; }
 	public bool Thirdperson { get; private set; }
 	public float CameraDistance { get; private set; }
 

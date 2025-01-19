@@ -17,10 +17,10 @@ partial class Player
 	[Property, Range( 0f, 32f, 0.5f ), Feature( "Movement" )]
 	public Vector3 Gravity { get; set; }
 
-	public bool Noclip { get; private set; }
-	public Vector3 WishVelocity { get; private set; }
-	public Vector3 Velocity { get; set; }
-	public GameObject GroundObject { get; private set; }
+	[Sync] public bool Noclip { get; private set; }
+	[Sync] public Vector3 WishVelocity { get; private set; }
+	[Sync] public Vector3 Velocity { get; set; }
+	[Sync] public GameObject GroundObject { get; private set; }
 	public bool IsGrounded => GroundObject.IsValid();
 	public BBox Box => Collider.IsValid() 
 		? BBox.FromPositionAndSize( Collider.Center, Collider.Scale )

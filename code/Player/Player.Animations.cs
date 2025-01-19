@@ -4,8 +4,10 @@ partial class Player
 {
 	private void UpdateAnimations()
 	{
-		if ( !AnimationHelper.IsValid() )
+		if ( !AnimationHelper.IsValid() || !Renderer.IsValid() )
 			return;
+
+		Renderer.WorldRotation = Rotation.FromYaw( EyeAngles.yaw );
 
 		AnimationHelper.IsGrounded = IsGrounded;
 

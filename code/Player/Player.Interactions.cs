@@ -1,6 +1,4 @@
-﻿using static Sandbox.Volumes.VolumeSystem;
-
-namespace BoxfishExample;
+﻿namespace BoxfishExample;
 
 partial class Player
 {

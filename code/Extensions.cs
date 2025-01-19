@@ -1,4 +1,6 @@
-﻿namespace BoxfishExample;
+﻿using Boxfish.Library;
+
+namespace BoxfishExample;
 
 public static class Extensions
 {
@@ -43,5 +45,40 @@ public static class Extensions
 		};
 
 		return true;
+	}
+
+	/// <summary>
+	/// Explodes a radius, this will account for if the volume is a <see cref="NetworkedVoxelVolume"/>.
+	/// </summary>
+	/// <param name="volume"></param>
+	/// <param name="position"></param>
+	/// <param name="radius"></param>
+	public static void Explode( this VoxelVolume volume, Vector3 position, float radius )
+	{
+		if ( !volume.IsValid() )
+			return;
+
+		var voxelPosition = volume.WorldToVoxel( position );
+
+		// Broadcast set radius of voxels..
+		if ( volume is NetworkedVoxelVolume netVolume )
+		{
+			netVolume.BroadcastSetRadius( voxelPosition, radius, Voxel.Empty );
+			return;
+		}
+
+		// Just set voxels in a radius...
+		var half = (int)(radius / 2f + 0.5f);
+		for ( int x = -half; x <= half; x++ )
+			for ( int y = -half; y <= half; y++ )
+				for ( int z = -half; z <= half; z++ )
+				{
+					var current = voxelPosition + new Vector3Int( x, y, z );
+					var distance = current.Distance( voxelPosition );
+					if ( distance >= radius / 2f )
+						continue;
+
+					volume.SetTrackedVoxel( current, Voxel.Empty );
+				}
 	}
 }
