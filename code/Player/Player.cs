@@ -31,15 +31,21 @@ public sealed partial class Player : Component
 		
 		if ( !IsProxy ) Local = this;
 		ResetPostion = WorldPosition;
-		Clothing = ClothingContainer.CreateFromLocalUser();
-
+		
 		if ( Camera.IsValid() )
 			Camera.Enabled = !IsProxy;
 
+		if ( !IsProxy )
+		{
+			var json = ClothingContainer
+				.CreateFromLocalUser()
+				.Serialize();
+
+			ApplyClothing( json );
+		}
+
 		if ( Renderer.IsValid() )
 		{
-			Clothing.Apply( Renderer );
-
 			/*
 			// https://i.imgur.com/R1fav6k.png
 			// The following code shows you how you would implement custom step sounds for different textures.
@@ -48,6 +54,15 @@ public sealed partial class Player : Component
 			*/
 			Renderer.AddVoxelFootsteps( 0.2f );
 		}
+	}
+
+	[Rpc.Broadcast]
+	public void ApplyClothing( string json )
+	{
+		Clothing = ClothingContainer.CreateFromJson( json );
+
+		if ( Renderer.IsValid() )
+			Clothing.Apply( Renderer );
 	}
 
 	protected override void OnUpdate()

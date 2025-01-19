@@ -31,6 +31,8 @@ partial class Player
 		if ( Input.Pressed( "Camera" ) )
 			Thirdperson = !Thirdperson;
 
+		Camera.FieldOfView = Preferences.FieldOfView;
+
 		// Thirdperson camera!
 		var backward = -EyeAngles.Forward;
 
