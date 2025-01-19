@@ -7,23 +7,23 @@ MODES
 {
     VrForward();
 
-	Depth( S_MODE_DEPTH );
+    Depth( S_MODE_DEPTH );
 
-	ToolsWireframe( "vr_tools_wireframe.shader" );
-	ToolsShadingComplexity( "tools_shading_complexity.shader" );
+    ToolsWireframe( "vr_tools_wireframe.shader" );
+    ToolsShadingComplexity( "tools_shading_complexity.shader" );
 }
 
 COMMON
 {
     #include "common/shared.hlsl"
-	StaticCombo( S_MODE_DEPTH, 0..1, Sys( ALL ) );
+    StaticCombo( S_MODE_DEPTH, 0..1, Sys( ALL ) );
 
     float g_flVoxelScale < Attribute( "VoxelScale" ); Default( 1.0 ); >;
 }
 
 struct VertexInput
 {
-	#include "common/vertexinput.hlsl"
+    #include "common/vertexinput.hlsl"
 
     uint2 vData : TEXCOORD10 < Semantic( None ); >;
 };
@@ -31,21 +31,21 @@ struct VertexInput
 
 struct PixelInput
 {
-	#include "common/pixelinput.hlsl"
+    #include "common/pixelinput.hlsl"
 
     float3 vNormal : TEXCOORD15;
     float fOcclusion : TEXCOORD14;
     float3 vTexCoord : TEXCOORD9;	
-	float4 vColor : TEXCOORD13;
+    float4 vColor : TEXCOORD13;
 };
 
 VS
 {
-	#include "common/vertex.hlsl"
+    #include "common/vertex.hlsl"
     #include "lib/voxel_utils.hlsl"
 
     PixelInput MainVs( VertexInput i )
-	{
+    {
         // Turn our 32-bit unsigned integers back to the actual data.
         int3 position = int3( i.vData.x & 0xF, (i.vData.x >> 4) & 0xF, (i.vData.x >> 8) & 0xF );
 
@@ -84,7 +84,7 @@ PS
     #define CUSTOM_TEXTURE_FILTERING
 
     #include "common/pixel.hlsl"
-    
+        
     CreateTexture2DArray( g_tAlbedo ) < Attribute( "VoxelAtlas" ); SrgbRead( true ); Filter( MIN_MAG_MIP_POINT ); AddressU( CLAMP ); AddressV( CLAMP ); > ;    
 
     SamplerState g_sSampler < Filter( POINT ); AddressU( CLAMP ); AddressV( CLAMP ); >;
@@ -92,22 +92,22 @@ PS
     RenderState( CullMode, DEFAULT );	
 
     BoolAttribute( translucent, true );
-	RenderState( AlphaToCoverageEnable, true );
+    RenderState( AlphaToCoverageEnable, true );
 
     float4 MainPs( PixelInput i ) : SV_Target0
-	{   
+    {   
         float4 albedo = Tex2DArrayS( g_tAlbedo, g_sSampler, i.vTexCoord.xyz ).rgba;
-
+        
         Material m = Material::Init();
         m.Albedo = albedo.rgb * i.vColor.rgb * i.fOcclusion;
         m.Normal = i.vNormal;
         m.Roughness = 1;
-		m.Metalness = 0;
-		m.AmbientOcclusion = i.fOcclusion;
-		m.TintMask = 1;
-		m.Opacity = albedo.a;
-		m.Emission = 0;
-		m.Transmission = 0;
+        m.Metalness = 0;
+        m.AmbientOcclusion = i.fOcclusion;
+        m.TintMask = 1;
+        m.Opacity = albedo.a;
+        m.Emission = 0;
+        m.Transmission = 0;
         
         return ShadingModelStandard::Shade( i, m );
     }

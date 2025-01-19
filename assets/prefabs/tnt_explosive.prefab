@@ -12,8 +12,8 @@
         "AllowBounces": true,
         "BounceVelocityLoss": 0.4,
         "Bounds": {
-          "Mins": "-6.25,-6.25,-6.25",
-          "Maxs": "6.25,6.25,6.25"
+          "Mins": "-10,-10,-10",
+          "Maxs": "10,10,10"
         },
         "DirectImpactDamage": 50,
         "EffectRadius": 12,
@@ -50,7 +50,7 @@
         "OnComponentUpdate": null,
         "ParticleEffect": {
           "_type": "gameobject",
-          "prefab": "prefabs/dust_particle.prefab"
+          "prefab": "prefabs/explosion.prefab"
         },
         "RotationAxis": "0,0,0",
         "RotationMode": "None",
@@ -63,7 +63,6 @@
         "__guid": "a4c396fe-5dc6-4ba0-98ff-659c738665e2",
         "Flags": 0,
         "Name": "Model",
-        "Scale": "0.25,0.25,0.25",
         "Enabled": true,
         "Components": [
           {
@@ -73,7 +72,7 @@
             "CreateAttachments": false,
             "MaterialGroup": null,
             "MaterialOverride": null,
-            "Model": null,
+            "Model": "models/explosive/explosive.vmdl",
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -105,7 +104,7 @@
             "OnObjectTriggerExit": null,
             "OnTriggerEnter": null,
             "OnTriggerExit": null,
-            "Scale": "50,50,50",
+            "Scale": "20,20,20",
             "Static": false,
             "Surface": null,
             "SurfaceVelocity": "0,0,0"

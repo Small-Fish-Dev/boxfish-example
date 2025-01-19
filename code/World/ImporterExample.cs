@@ -19,10 +19,7 @@ public sealed class ImporterExample : VoxelVolume, Component.ExecuteInEditor
 			return;
 
 		if ( Game.IsPlaying || !Scene.IsEditor )
-		{
-			base.OnUpdate();
 			return;
-		}
 
 		// Render chunk models in editor only!
 		foreach ( var (position, model) in EditorChunks )

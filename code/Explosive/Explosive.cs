@@ -1,6 +1,4 @@
-﻿using Sandbox;
-
-namespace BoxfishExample;
+﻿namespace BoxfishExample;
 
 public enum PhysicsRotationMode
 {
@@ -76,6 +74,7 @@ public sealed class Explosive : Component
 
 	public Vector3 Velocity { get; set; }
 	public TimeSince SinceCreated { get; private set; }
+	public ModelRenderer Renderer { get; private set; }
 
 	private bool _exploded;
 	private GameObject _collidedWith;
@@ -87,6 +86,7 @@ public sealed class Explosive : Component
 		base.OnStart();
 
 		SinceCreated = 0f;
+		Renderer = Components.Get<ModelRenderer>( FindMode.EverythingInSelfAndChildren );
 
 		if ( !LockRotation )
 			WorldRotation *= Rotation.LookAt( Velocity );
@@ -242,6 +242,16 @@ public sealed class Explosive : Component
 			Velocity = helper.Velocity,
 			Collided = collided || _collidedWith.IsValid()
 		};
+	}
+
+	protected override void OnUpdate()
+	{
+		if ( !Renderer.IsValid() )
+			return;
+
+		var t = SinceCreated / ExplodeCooldown * 6f + 1;
+		var f = MathF.Sin( t * t ) / 2f + 0.5f;
+		Renderer.Tint = Color.Lerp( Color.White, Color.White.WithAlpha( 0.5f ), f );
 	}
 
 	protected override void OnFixedUpdate()
