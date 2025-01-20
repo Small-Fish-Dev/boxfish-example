@@ -4,6 +4,7 @@ public sealed class ImporterExample : VoxelVolume, Component.ExecuteInEditor
 {
 	public override bool StoreEditorChunks { get; } = true;
 	public override bool IgnoreOOBFaces { get; } = false; // TODO: Doesn't really work with elevation :/
+	
 	protected override async void OnStart()
 	{
 		base.OnStart();

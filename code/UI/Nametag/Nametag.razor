@@ -1,0 +1,25 @@
+﻿﻿@namespace BoxfishExample
+@inherits PanelComponent
+
+@if ( !Player.IsValid() )
+	return;
+
+<root class="@(Player == Player.Local ? "hidden" : "")">
+	<div class="container">
+		@Name
+	</div>
+</root>
+
+@code {
+	private Player Player => Components.GetInParentOrSelf<Player>( true );
+
+	private string Name => Player?.Connection?.DisplayName ?? "unknown";
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(
+			Player.IsValid(),
+			Name
+		);
+	}
+}

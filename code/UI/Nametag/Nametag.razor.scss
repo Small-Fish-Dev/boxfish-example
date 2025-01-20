@@ -1,0 +1,22 @@
+Nametag {
+    width: 100%;
+    font-size: 32px;
+    justify-content: center;
+    align-items: center;
+
+    > .container {
+        align-items: center;
+        text-align: center;
+        padding: 0px 20px;
+        background-color: rgba(black, 0.8);
+        height: 100%;
+    }
+
+    font-weight: bold;
+    font-family: Consolas;
+    color: white;
+
+    &.hidden {
+        opacity: 0;
+    }
+}

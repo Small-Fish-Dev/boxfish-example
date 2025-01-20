@@ -22,14 +22,22 @@ public sealed partial class Player : Component
 	[Property, Feature( "Components" )]
 	public CitizenAnimationHelper AnimationHelper { get; set; }
 
+	public Connection Connection => Connection.Find( ConnectionId );
+	[Sync] public Guid ConnectionId { get; private set; }
+
 	public ClothingContainer Clothing { get; private set; }
 	public Vector3 ResetPostion { get; private set; }
 
 	protected override void OnStart()
 	{
 		base.OnStart();
-		
-		if ( !IsProxy ) Local = this;
+
+		if ( !IsProxy )
+		{
+			ConnectionId = Connection.Local.Id;
+			Local = this;
+		}
+
 		ResetPostion = WorldPosition;
 		
 		if ( Camera.IsValid() )

@@ -1,17 +1,26 @@
 HUDComponent {
     justify-content: center;
     width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Consolas;
+    color: white;
+    text-shadow: 2px 2px black;
+
+    > .note {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        flex-direction: column;
+        opacity: 0.4;
+    }
 
     > .keybinds {
         position: absolute;
         left: 20px;
         bottom: 20px;
-        font-size: 24px;
-        font-weight: bold;
-        font-family: Consolas;
-        color: white;
-        text-shadow: 2px 2px black;
         gap: 5px;
+        opacity: 0.4;
         flex-direction: column;
     }
 }

@@ -262,6 +262,47 @@
             "Smoothness": 1
           }
         ]
+      },
+      {
+        "__guid": "4a7f0040-d4b1-41ad-bec3-d68f790e37ec",
+        "Flags": 0,
+        "Name": "Nametag",
+        "Position": "0,0,82.47235",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.WorldPanel",
+            "__guid": "d9573148-12fa-4234-b5a9-90ab792acfa5",
+            "HorizontalAlign": "Center",
+            "InteractionRange": 1000,
+            "LookAtCamera": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "PanelSize": "1024,180",
+            "RenderOptions": {
+              "GameLayer": false,
+              "OverlayLayer": true,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "BoxfishExample.Nametag",
+            "__guid": "aa600aa4-e998-45f2-ab42-cba8f6c5a904",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null
+          }
+        ]
       }
     ],
     "__variables": [],
