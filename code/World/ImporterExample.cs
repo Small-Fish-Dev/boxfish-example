@@ -25,8 +25,8 @@ public sealed class ImporterExample : VoxelVolume, Component.ExecuteInEditor
 		// Render chunk models in editor only!
 		foreach ( var (position, model) in EditorChunks )
 		{
-			var transform = new Transform();
-			var obj = Gizmo.Draw.Model( model, new Transform( position ) );
+			var transform = new Transform( position );
+			var obj = Gizmo.Draw.Model( model, transform );
 			SetAttributes( obj.Attributes );
 		}
 	}
